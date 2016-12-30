@@ -1,10 +1,12 @@
 #include "../SPBPriorityQueue.h"
 #include "unit_test_util.h"
 #include <stdbool.h>
+#include <time.h>
+#include <stdlib.h>
 
 #include <stdio.h>
 
-bool blabla()
+bool BasicTest()
 {
 	int i;
 	SPBPQueue*  q = spBPQueueCreate(3);
@@ -23,8 +25,23 @@ bool blabla()
 	return 0;
 }
 
+bool BPQueueCopyTest()
+{
+	SPBPQueue*  q = spBPQueueCreate(5);
+	spBPQueueEnqueue(q,6,3);
+	spBPQueueEnqueue(q,2,-1);
+	spBPQueueEnqueue(q,1,2);
+	SPBPQueue* copy_q = spBPQueueCopy(q);
+	ASSERT_TRUE(spBPQueueSize(q)==spBPQueueSize(copy_q));
+	ASSERT_TRUE(spBPQueueGetMaxSize(q)==spBPQueueGetMaxSize(copy_q));
+
+	spBPQueueDestroy(q);
+	spBPQueueDestroy(copy_q);
+	return true;
+}
+
 int main() 
 {
-	blabla();
+	RUN_TEST(BPQueueCopyTest);
 	return 0;
 }

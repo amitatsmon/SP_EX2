@@ -37,10 +37,10 @@ SPBPQueue* spBPQueueCreate(int maxSize)
 
 SPBPQueue* spBPQueueCopy(SPBPQueue* source)
 {
-	assert(NULL != source);
 	int i;
-
 	SPBPQueue* newSPBQueue;
+
+	assert(NULL != source);
 
 	if (NULL == (newSPBQueue = (SPBPQueue*)malloc(sizeof(SPBPQueue))))
 	{
