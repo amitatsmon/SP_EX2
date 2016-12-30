@@ -40,8 +40,33 @@ bool BPQueueCopyTest()
 	return true;
 }
 
+bool BPQueueEnqueueTest()
+{
+	int i;
+	SPBPQueue*  q = spBPQueueCreate(100);
+	ASSERT_TRUE(0==spBPQueueSize(q));
+	for (i=0; i<50; i++)
+	{
+		spBPQueueEnqueue(q, 6, 6);
+	}
+	ASSERT_TRUE(50==spBPQueueSize(q));
+	for (i=0; i<50; i++)
+	{
+		spBPQueueEnqueue(q, 6, 6);
+	}
+	ASSERT_TRUE(100==spBPQueueSize(q));
+	for (i=0; i<50; i++)
+	{
+		spBPQueueEnqueue(q, 6, 6);
+	}
+	ASSERT_TRUE(100==spBPQueueSize(q));
+	spBPQueueDestroy(q);
+	return true;
+}
+
 int main() 
 {
 	RUN_TEST(BPQueueCopyTest);
+	RUN_TEST(BPQueueEnqueueTest);
 	return 0;
 }

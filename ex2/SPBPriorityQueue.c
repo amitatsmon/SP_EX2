@@ -108,8 +108,9 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue* source, int index, double value)
 			break;
 		}
 		insert_index = i + 1;
-
 	}
+	printf("size: %d, insert: %d\n",source->size, insert_index);
+
 	if (spBPQueueIsFull(source))
 	{
 		if (insert_index != 0)
@@ -126,7 +127,6 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue* source, int index, double value)
 	}
 	else
 	{
-		++(source->size);
 		for (i = source->size; i > insert_index; --i)
 		{
 			(source->data)[i].value = (source->data)[i - 1].value;
@@ -134,6 +134,7 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue* source, int index, double value)
 		}
 		(source->data)[insert_index].value = value;
 		(source->data)[insert_index].index = index;
+		++(source->size);
 		return SP_BPQUEUE_SUCCESS;
 	}
 }
