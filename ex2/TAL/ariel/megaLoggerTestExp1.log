@@ -1,0 +1,18 @@
+---ERROR---
+- file: sp_logger_unit_test.c
+- function: megaLoggerTest
+- line: 108
+- message: MSGA
+---WARNING---
+- file: sp_logger_unit_test.c
+- function: megaLoggerTest
+- line: 109
+- message: MSGB
+---INFO---
+- message: MSGC
+---DEBUG---
+- file: sp_logger_unit_test.c
+- function: megaLoggerTest
+- line: 111
+- message: MSGD
+MSGE
