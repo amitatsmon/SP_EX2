@@ -7,6 +7,8 @@
 
 void cloneBPQueueElement(BPQueueElement* element, BPQueueElement* res)
 {
+	assert(element != NULL);
+
 	res->index = element->index;
 	res->value = element->value;
 }
@@ -103,13 +105,19 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue* source, int index, double value)
 	insert_index = 0;
 	for (i = 0; i < source->size; ++i)
 	{
-		if (value >= (source->data)[i].value)
+		if (value == (source->data)[i].value)
+		{
+			if(index >= source->data[i].index)
+			{
+				break;
+			}
+		}
+		if (value > (source->data)[i].value)
 		{
 			break;
 		}
 		insert_index = i + 1;
 	}
-	printf("size: %d, insert: %d\n",source->size, insert_index);
 
 	if (spBPQueueIsFull(source))
 	{
@@ -160,8 +168,16 @@ SP_BPQUEUE_MSG spBPQueuePeek(SPBPQueue* source, BPQueueElement* res)
 	{
 		return SP_BPQUEUE_EMPTY;
 	}
+	printf("1.1\n");
+	printf("%4x\n", (int)source);
+	printf("%4x\n", (int)source->data);
+	printf("%4x\n", (int)source->size);
+	BPQueueElement* g = &((source->data)[source->size - 1]);
+	printf("%4x\n", (int)g);
+	printf("%d, %lf",g->index, g->value);
 
-	cloneBPQueueElement((source->data) + (source->size) - 1, res);
+	cloneBPQueueElement(source->data+(source->size) - 1, res);
+	printf("1.2\n");
 	return SP_BPQUEUE_SUCCESS;
 }
 

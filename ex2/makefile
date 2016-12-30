@@ -1,4 +1,4 @@
-CC = gcc
+CC = gcc 
 OBJS = main.o main_aux.o SPPoint.o SPBPriorityQueue.o
 EXEC = ex2
 COMP_FLAG = -std=c99 -Wall -Wextra \

@@ -5,12 +5,6 @@
 #include <errno.h>
 #include <assert.h>
 
-struct sp_point_t
-{
-	int dim;
-	int index;
-	double *data;
-};
 
 SPPoint* spPointCreate(double* data, int dim, int index)
 {
