@@ -7,7 +7,7 @@
 
 void cloneBPQueueElement(BPQueueElement* element, BPQueueElement* res)
 {
-	assert(element != NULL);
+	assert(element != NULL && res != NULL);
 
 	res->index = element->index;
 	res->value = element->value;
@@ -30,10 +30,6 @@ SPBPQueue* spBPQueueCreate(int maxSize)
 		printf("Error allocating memory: %s\n", strerror(errno));
 		return NULL;
 	}
-	//for (i = 0; i < maxSize; ++i)
-	//{
-	//	(newSPBQueue->data)[i] = NULL;
-	//}
 	return newSPBQueue;
 }
 
@@ -168,16 +164,7 @@ SP_BPQUEUE_MSG spBPQueuePeek(SPBPQueue* source, BPQueueElement* res)
 	{
 		return SP_BPQUEUE_EMPTY;
 	}
-	printf("1.1\n");
-	printf("%4x\n", (int)source);
-	printf("%4x\n", (int)source->data);
-	printf("%4x\n", (int)source->size);
-	BPQueueElement* g = &((source->data)[source->size - 1]);
-	printf("%4x\n", (int)g);
-	printf("%d, %lf",g->index, g->value);
-
-	cloneBPQueueElement(source->data+(source->size) - 1, res);
-	printf("1.2\n");
+	cloneBPQueueElement((source->data)+(source->size) - 1, res);
 	return SP_BPQUEUE_SUCCESS;
 }
 

@@ -17,6 +17,13 @@ int main()
 	SPBPQueue* square_distense_bqueue;
 	BPQueueElement* out_of_queue = NULL;
 
+	out_of_queue = (BPQueueElement*)malloc(sizeof(BPQueueElement));
+	if(NULL == out_of_queue)
+	{
+		printf("Error allocating memory: %s\n", strerror(errno));
+		return -1;
+	}
+
 	scanf("%d %d %d", &in_total_num_of_points, &in_dim, &in_num_of_points_to_print); //We assume that the input is valid
 
 	in_points_array = (SPPoint**)malloc(sizeof(SPPoint*)*in_total_num_of_points);
@@ -42,36 +49,25 @@ int main()
 
 	square_distense_bqueue = spBPQueueCreate(in_num_of_points_to_print);
 
-	for (int i = 0; i < in_total_num_of_points; ++i)
+	for (i = 0; i < in_total_num_of_points; ++i)
 	{
 		cur_dist = spPointL2SquaredDistance(in_point_q, in_points_array[i]);
-		//printf("%lf\n", cur_dist);
 		spBPQueueEnqueue(square_distense_bqueue, i+1, cur_dist); //Check return value??
-	}
-
-	for (int i = 0; i < square_distense_bqueue->size; ++i)
-	{
-		printf("%4x\n", (int)&(square_distense_bqueue->data[i]));
-		printf("%d, %lf\n",square_distense_bqueue->data[i].index, square_distense_bqueue->data[i].value);
 	}
 
 	for (int i = 0; i < spBPQueueSize(square_distense_bqueue)-1; ++i)
 	{
-		printf("1\n");
-		printf("%4x\n", (int)square_distense_bqueue);
 		spBPQueuePeek(square_distense_bqueue, out_of_queue);
-		printf("2\n");
 		spBPQueueDequeue(square_distense_bqueue); //Check return value??
-		printf("3\n");
-		printf("%d ", out_of_queue->index);
-		printf("4\n");
+		printf("%d, ", out_of_queue->index);
 	}
-	
+
 	spBPQueuePeek(square_distense_bqueue, out_of_queue);
 	spBPQueueDequeue(square_distense_bqueue); //Check return value??
 	printf("%d\n", out_of_queue->index);
 	
 	//free all memory
+	free(out_of_queue);
 	spBPQueueDestroy(square_distense_bqueue);
 	spPointDestroy(in_point_q);
 	for (i=0; i<in_total_num_of_points; ++i)
