@@ -4,6 +4,9 @@
 #include <time.h>
 #include <stdlib.h>
 
+/**
+ * Creates a random point, copies it and checks that the 2 points are the same.
+ */
 bool pointCopyTest() 
 {
 	int i, dim;
@@ -11,19 +14,22 @@ bool pointCopyTest()
 	double d1, d2;
 	SPPoint *p, *q;
 
-	while (!(dim = rand()%100001)) ;
+	while (!(dim = rand()%100001)) ; //Makes sure dim != 0
 
 	double* data = (double*)malloc(sizeof(double)*dim);
 
 	for (i = 0; i < dim; ++i)
 	{
 		d1 = (double)rand();
-		while (!(d2 = rand()));
+		while (!(d2 = rand())); //Makes sure we don't devide by zero
 		data[i] = d1/d2;
 	}
 
 	p = spPointCreate(data, dim, index);
 	q = spPointCopy(p);
+
+	ASSERT_TRUE(spPointGetDimension(p) == spPointGetDimension(q));
+	ASSERT_TRUE(spPointGetIndex(p) == spPointGetIndex(q));
 
 	for (int i = 0; i < dim; ++i) 
 	{
@@ -35,6 +41,10 @@ bool pointCopyTest()
 	return true;
 }
 
+/**
+ * Creates 2 random points with the same dimension, checks that their squared distance is correct.
+ * Repeats 10 times.
+ */
 bool pointL2Distance() 
 {
 	int i, k, dim;
@@ -43,7 +53,7 @@ bool pointL2Distance()
 	SPPoint *p, *q;
 	for (k = 0; k < 10; ++k)
 	{
-		while (!(dim = rand()%100001)) ;
+		while (!(dim = rand()%100001)); //Makes sure dim != 0
 
 		//Create point p
 		data1 = (double*)malloc(sizeof(double)*dim);
@@ -51,7 +61,7 @@ bool pointL2Distance()
 		for (i = 0; i < dim; ++i)
 		{
 			d1 = (double)rand();
-			while (!(d2 = rand()));
+			while (!(d2 = rand())); //Makes sure we don't devide by zero
 			data1[i] = d1/d2;
 		}
 		p = spPointCreate(data1, dim, index);
@@ -81,6 +91,10 @@ bool pointL2Distance()
 	return true;
 }
 
+/**
+ * Creates a random point, checks that its dimension is correct.
+ * Repeats 10 times.
+ */
 bool pointGetDimensionTest() 
 {
 	int i, k, dim;
@@ -90,13 +104,13 @@ bool pointGetDimensionTest()
 
 	for (k = 0; k < 10; ++k)
 	{
-		while (!(dim = rand()%100001)) ;
+		while (!(dim = rand()%100001)) ; //Makes sure dim != 0
 
 		double* data = (double*)malloc(sizeof(double)*dim);
 		for (i = 0; i < dim; ++i)
 		{
 			d1 = (double)rand();
-			while (!(d2 = rand()));
+			while (!(d2 = rand())); //Makes sure we don't devide by zero
 			data[i] = d1/d2;
 		}
 
@@ -109,6 +123,9 @@ bool pointGetDimensionTest()
 	return true;
 }
 
+/**
+ * Creates 3 points, and checks their indexes.
+ */
 bool pointGetIndexTest() 
 {
 	double data1[2] = { 5.0, 6.0 };
@@ -131,19 +148,22 @@ bool pointGetIndexTest()
 	return true;
 }
 
+/**
+ * Creates a random point, checks that its axis coordinations are correct.
+ */
 bool pointGetAxisCoorTest() 
 {
 	int i, dim;
 	int index = 1;
 	double d1, d2;
 
-	while (!(dim = rand()%100001)) ;
+	while (!(dim = rand()%100001)) ; //Makes sure dim != 0
 
 	double* data = (double*)malloc(sizeof(double)*dim);
 	for (i = 0; i < dim; ++i)
 	{
 		d1 = (double)rand();
-		while (!(d2 = rand()));
+		while (!(d2 = rand())); //Makes sure we don't devide by zero
 		data[i] = d1/d2;
 	}
 
