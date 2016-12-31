@@ -18,6 +18,7 @@ int main()
 	BPQueueElement* out_of_queue = NULL;
 
 	out_of_queue = (BPQueueElement*)malloc(sizeof(BPQueueElement));
+	//Checking that malloc worked
 	if(NULL == out_of_queue)
 	{
 		printf("Error allocating memory: %s\n", strerror(errno));
@@ -28,7 +29,7 @@ int main()
 
 	in_points_array = (SPPoint**)malloc(sizeof(SPPoint*)*in_total_num_of_points);
 
-	//check that malloc worked
+	//Checking that malloc worked
 	if(NULL == in_points_array)
 	{
 		printf("Error allocating memory: %s\n", strerror(errno));
