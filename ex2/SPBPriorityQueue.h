@@ -129,6 +129,7 @@ int spBPQueueGetMaxSize(SPBPQueue* source);
  * @assert source != NULL
  * @return
  * SP_BPQUEUE_FULL if the queue is full
+ * SP_BPQUEUE_INVALID_ARGUMENT if source == NULL
  * Otherwise, SP_BPQUEUE_SUCCESS
  */
 SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue* source, int index, double value);
