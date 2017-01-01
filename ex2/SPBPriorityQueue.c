@@ -5,6 +5,13 @@
 #include <errno.h>
 #include <assert.h>
 
+/**
+ * This is a helper function.
+ * It clones a BPQueueElement from element to res
+ *
+ * @param element - The BPQueueElement to be copied
+ * @param res - The BPQueueElement element is copied to
+ */
 void cloneBPQueueElement(BPQueueElement* element, BPQueueElement* res)
 {
 	assert(element != NULL && res != NULL);
@@ -94,7 +101,10 @@ int spBPQueueGetMaxSize(SPBPQueue* source)
 
 SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue* source, int index, double value)
 {
-	assert(NULL != source);
+	if (NULL == source)
+	{
+		return SP_BPQUEUE_INVALID_ARGUMENT;
+	}
 
 	int i, insert_index;
 
@@ -145,7 +155,10 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue* source, int index, double value)
 
 SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue* source)
 {
-	assert(NULL != source);
+	if (NULL == source)
+	{
+		return SP_BPQUEUE_INVALID_ARGUMENT;
+	}
 
 	if (spBPQueueIsEmpty(source))
 	{
@@ -183,14 +196,14 @@ SP_BPQUEUE_MSG spBPQueuePeekLast(SPBPQueue* source, BPQueueElement* res)
 
 double spBPQueueMinValue(SPBPQueue* source)
 {
-	assert(NULL != source && (0 == source->size));
+	assert((NULL != source) && (0 != source->size));
 
 	return ((source->data) + (source->size) - 1)->value;
 }
 
 double spBPQueueMaxValue(SPBPQueue* source)
 {
-	assert(NULL != source && (0 == source->size));
+	assert((NULL != source) && (0 != source->size));
 
 	return (source->data)->value;
 }

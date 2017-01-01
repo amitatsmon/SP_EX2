@@ -11,7 +11,7 @@ bool pointCopyTest()
 {
 	int i, dim;
 	int index = 1;
-	double d1, d2;
+	double temp_double1, temp_double2;
 	SPPoint *p, *q;
 
 	while (!(dim = rand()%100001)) ; //Makes sure dim != 0
@@ -20,9 +20,9 @@ bool pointCopyTest()
 
 	for (i = 0; i < dim; ++i)
 	{
-		d1 = (double)rand();
-		while (!(d2 = rand())); //Makes sure we don't devide by zero
-		data[i] = d1/d2;
+		temp_double1 = (double)rand();
+		while (!(temp_double2 = rand())); //Makes sure we don't devide by zero
+		data[i] = temp_double1/temp_double2;
 	}
 
 	p = spPointCreate(data, dim, index);
@@ -49,7 +49,7 @@ bool pointL2Distance()
 {
 	int i, k, dim;
 	int index = 1;
-	double d1, d2, *data1, *data2, square_dist;
+	double temp_double1, temp_double2, *data1, *data2, square_dist;
 	SPPoint *p, *q;
 	for (k = 0; k < 10; ++k)
 	{
@@ -60,18 +60,18 @@ bool pointL2Distance()
 		data2 = (double*)malloc(sizeof(double)*dim);
 		for (i = 0; i < dim; ++i)
 		{
-			d1 = (double)rand();
-			while (!(d2 = rand())); //Makes sure we don't devide by zero
-			data1[i] = d1/d2;
+			temp_double1 = (double)rand();
+			while (!(temp_double2 = rand())); //Makes sure we don't devide by zero
+			data1[i] = temp_double1/temp_double2;
 		}
 		p = spPointCreate(data1, dim, index);
 
 		//Create point q
 		for (i = 0; i < dim; ++i)
 		{
-			d1 = (double)rand();
-			while (!(d2 = rand()));
-			data2[i] = d1/d2;
+			temp_double1 = (double)rand();
+			while (!(temp_double2 = rand()));
+			data2[i] = temp_double1/temp_double2;
 		}
 		q = spPointCreate(data2, dim, index);
 
@@ -99,7 +99,7 @@ bool pointGetDimensionTest()
 {
 	int i, k, dim;
 	int index = 1;
-	double d1, d2;
+	double temp_double1, temp_double2;
 	SPPoint* p;
 
 	for (k = 0; k < 10; ++k)
@@ -109,9 +109,9 @@ bool pointGetDimensionTest()
 		double* data = (double*)malloc(sizeof(double)*dim);
 		for (i = 0; i < dim; ++i)
 		{
-			d1 = (double)rand();
-			while (!(d2 = rand())); //Makes sure we don't devide by zero
-			data[i] = d1/d2;
+			temp_double1 = (double)rand();
+			while (!(temp_double2 = rand())); //Makes sure we don't devide by zero
+			data[i] = temp_double1/temp_double2;
 		}
 
 		p = spPointCreate(data, dim, index);
@@ -155,16 +155,16 @@ bool pointGetAxisCoorTest()
 {
 	int i, dim;
 	int index = 1;
-	double d1, d2;
+	double temp_double1, temp_double2;
 
 	while (!(dim = rand()%100001)) ; //Makes sure dim != 0
 
 	double* data = (double*)malloc(sizeof(double)*dim);
 	for (i = 0; i < dim; ++i)
 	{
-		d1 = (double)rand();
-		while (!(d2 = rand())); //Makes sure we don't devide by zero
-		data[i] = d1/d2;
+		temp_double1 = (double)rand();
+		while (!(temp_double2 = rand())); //Makes sure we don't devide by zero
+		data[i] = temp_double1/temp_double2;
 	}
 
 	SPPoint* p = spPointCreate(data, dim, index);

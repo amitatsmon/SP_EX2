@@ -137,9 +137,9 @@ SP_BPQUEUE_MSG spBPQueueEnqueue(SPBPQueue* source, int index, double value);
  * Given the queue source  the function removes the element with the lowest value
  *
  * @param source - The source queue
- * @assert source != NULL
  * @return
  * SP_BPQUEUE_EMPTY if the queue is empty
+ * SP_BPQUEUE_INVALID_ARGUMENT if source == NULL
  * Otherwise, SP_BPQUEUE_SUCCESS
  */
 SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue* source);
@@ -154,9 +154,9 @@ SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue* source);
  *
  * @param source - The source queue
  * @param res - A queue element that would become a copy of m
- * @assert source != NULL
  * @return
  * SP_BPQUEUE_EMPTY if the queue is empty
+ * SP_BPQUEUE_INVALID_ARGUMENT if source == NULL
  * Otherwise, SP_BPQUEUE_SUCCESS
  */
 SP_BPQUEUE_MSG spBPQueuePeek(SPBPQueue* source, BPQueueElement* res);
