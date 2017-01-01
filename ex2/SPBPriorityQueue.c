@@ -171,7 +171,10 @@ SP_BPQUEUE_MSG spBPQueueDequeue(SPBPQueue* source)
 
 SP_BPQUEUE_MSG spBPQueuePeek(SPBPQueue* source, BPQueueElement* res)
 {
-	assert(NULL != source);
+	if (NULL == source || NULL == res)
+	{
+		return SP_BPQUEUE_INVALID_ARGUMENT;
+	}
 
 	if (0 == source->size)
 	{
@@ -183,7 +186,10 @@ SP_BPQUEUE_MSG spBPQueuePeek(SPBPQueue* source, BPQueueElement* res)
 
 SP_BPQUEUE_MSG spBPQueuePeekLast(SPBPQueue* source, BPQueueElement* res)
 {
-	assert(NULL != source);
+	if (NULL == source || NULL == res)
+	{
+		return SP_BPQUEUE_INVALID_ARGUMENT;
+	}
 
 	if (0 == source->size)
 	{

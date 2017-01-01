@@ -171,8 +171,8 @@ SP_BPQUEUE_MSG spBPQueuePeek(SPBPQueue* source, BPQueueElement* res);
  *
  * @param source - The source queue
  * @param res - A queue element that would become a copy of M
- * @assert source != NULL
  * @return
+ * SP_BPQUEUE_INVALID_ARGUMENT if source == NULL or res == NULL
  * SP_BPQUEUE_EMPTY if the queue is empty
  * Otherwise, SP_BPQUEUE_SUCCESS
  */
@@ -182,9 +182,11 @@ SP_BPQUEUE_MSG spBPQueuePeekLast(SPBPQueue* source, BPQueueElement* res);
  * Given the queue source  the function returns the minimal element value in the queue.
  *
  * @param source - The source queue
- * @assert source != NULL and the queue is not empty
+ * 
  * @return
- * the minimal value in the queue
+ * SP_BPQUEUE_INVALID_ARGUMENT if source == NULL or res == NULL
+ * SP_BPQUEUE_EMPTY if the queue is empty
+ * Otherwise, SP_BPQUEUE_SUCCESS
  */
 double spBPQueueMinValue(SPBPQueue* source);
 
